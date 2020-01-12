@@ -165,4 +165,4 @@ console.log(typeof jhonOlder);
 // jhon.calcAge();
 // console.log(jhon);
 
-/
+
