@@ -27,17 +27,28 @@
     
     var questions = [q1,q2,q3];
     
-    var n = Math.floor(Math.random() * questions.length);
+     function nextQuestion(){
     
-    //onsole.log(n);
-    
-    questions[n].displayQuestion();
-    
-    var q = questions[n].question +'\n'+ questions[n].answers.join('\n');
-    
-    var answer = parseInt(prompt(q));
-    
-    questions[n].checkAns(answer);
+        var n = Math.floor(Math.random() * questions.length);
+        
+        //onsole.log(n);
+        
+        questions[n].displayQuestion();
+        
+        var q = questions[n].question +'\n'+ questions[n].answers.join('\n');
+        
+        var answer = parseInt(prompt(q));
+        
+        
+
+        if(answer !== 'exit'){
+            questions[n].checkAns(answer);
+            nextQuestion();
+        }
+        
+     }
+
+     nextQuestion();
     
     
 })();
