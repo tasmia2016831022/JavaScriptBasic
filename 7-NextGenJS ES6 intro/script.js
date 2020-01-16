@@ -325,10 +325,84 @@ console.log(b);
  }
 
  isFullAge6(18,1995,1996,2017);
+console.log('-------------------------');
+ ///Default Parameters 
 
- 
+//  function Student(obj){
+//      this.semester = obj.name ? obj.name : 'dfsdf'; 
+//      this.name = name;
+//      //this.semester = semester;
+//      //this.reg = reg;
+//  }
 
+//  var leo = new Student({name: 'Leo', reg: 14848});
 
+///ES6
 
+function Student(obj){
+    this.subject = obj.subject? undefined : 'Chemistry';
+    this.name = obj.name;
+    this.roll = obj.roll;
 
+}
+
+var rach = {
+    name: 'Rachel',
+    roll: 12,
+    subject: undefined
+}
+
+var rac = new Student(rach);
+
+///Maps
+
+const question = new Map();
+question.set('ques','which drink contains more caffaine?');
+question.set(1, 'water');
+question.set(2, 'coffee');
+question.set(3, 'juice');
+question.set('correct',2);
+question.set(true, 'Correct Answer');
+question.set(false, 'Wrong Answer');
+
+console.log(question.get('ques'));
+console.log(question.size);
+
+if(question.has(1)){
+    console.log('Has 4');
+}
+
+question.forEach((value,key)=> console.log(`This is ${key} : ${value}`));
+
+//question.clear();
+
+for(let [key,value] of question.entries()){
+    if(typeof(key)==="number"){
+        console.log(`${key}: ${value}`);
+    }
+}
+
+// const ans = parseInt(prompt('Write the correct answer '));
+// console.log(question.get(ans === question.get('correct')));
+
+///classes
+class People{
+    constructor(name, age ){
+        this.name = name;
+        this.age = age;
+    }
+    calculateBirthYear(){
+        var BirthYear = 2020-this.age;
+        console.log(BirthYear);
+    }
+    static greetings(){
+        console.log('Hii');
+    }
+}
+
+const pep = new People('Lia',20);
+pep.calculateBirthYear();
+People.greetings();
+
+///subclasses
 
