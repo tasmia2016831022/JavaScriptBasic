@@ -406,3 +406,67 @@ People.greetings();
 
 ///subclasses
 
+//ES5
+
+var Product = function(name, price){
+    this.name = name;
+    this.price = price;
+}
+
+Product.prototype.calcWallet = function(){
+    var cost = 200 - this.price;
+    console.log(cost);
+}
+
+var Vegetable = function(name , price , color){
+    Product.call(this,name , price);
+    this.color = color;
+}
+
+Vegetable.prototype = Object.create(Product.prototype);
+
+//After Object.create
+Vegetable.prototype.isHealthy = function(){
+    if(this.color == 'green'){
+        console.log('Healthy');
+    }else{
+        console.log('Moderate');
+    }
+}
+
+var onion = new Vegetable('shallot',120,'purple');
+onion.calcWallet();
+onion.isHealthy();
+
+//ES6
+
+class Product6{
+    constructor(name , price){
+        this.name = name;
+        this.price = price;
+    }
+    calcWallet6(){
+        var cost = 200 - this.price;
+        console.log('es6 '+cost);
+    }
+}
+
+class Vegetable6 extends Product6{
+    constructor(name , price , color){
+        super(name , price);
+        this.color = color;
+    }
+    isHealthy6(){
+        if(this.color === 'green'){
+            console.log('Contains green');
+        }else{
+            console.log('vit A');
+        }
+
+    }
+}
+
+const letus = new Vegetable6('letus',100,'green');
+letus.calcWallet6();
+letus.isHealthy6();
+
