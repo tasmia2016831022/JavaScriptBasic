@@ -1,6 +1,42 @@
-// import str from './models/Search';
+import Search from './models/Search';
+import * as searchView from './views/searchView';
+import {elements, renderLoader, clearLoader} from './views/base';
 
-// //import {add as a,multiply as m,ID} from './views/searchView';
+/** Global State of the App
+ * - Search Object
+ * - Current Recipie Object
+ * - Shopping List Object
+ * - Liked Recipies
+ */
 
-// import * as searchView from './views/searchView';
-// console.log(`Using imported function: ${searchView.add(searchView.ID,2)} and ${searchView.multiply(3,5)}. ${str}. `);
+ const state = {};
+
+ const controlSearch = async () =>{
+     // Get Query from the view
+     const query = searchView.getInput();
+     console.log(query); //TODO
+
+     if(query){
+         //New Search Object and add to state
+         state.search = new Search(query);
+
+         //Prepare UI for Results 
+         searchView.clearInput();
+         searchView.clearResults();
+         renderLoader(elements.searchRes);
+
+         //Search for recipies
+         await state.search.getResults();
+
+         //Render results on UI
+         clearLoader();
+         searchView.renderResults(state.search.results);
+
+     }
+ }
+
+ elements.searchForm.addEventListener('submit', e=>{
+     e.preventDefault();
+     controlSearch();
+ });
+
