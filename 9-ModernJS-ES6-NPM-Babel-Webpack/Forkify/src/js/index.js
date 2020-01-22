@@ -2,7 +2,7 @@ import Search from "./models/Search";
 import * as searchView from "./views/searchView";
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
-import List from './models/list';
+import List from './models/List';
 import { elements, renderLoader, clearLoader } from "./views/base";
 import Recipe from "./models/Recipe";
 
@@ -134,6 +134,7 @@ const controlList = () =>{
   }
 
   //Add ingredients each to the list and UI
+  listView.clearShoppingList();
   state.recipe.ingredients.forEach(el => {
     const item = state.list.addItem(el.count,el.unit,el.ingredient);
     listView.renderItem(item);
@@ -158,6 +159,10 @@ elements.shopping.addEventListener('click', e =>{
       state.list.updateCount(id, val);
     }
 });
+
+/*
+* LIKE CONTROLLER
+*/
 
 //Handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
