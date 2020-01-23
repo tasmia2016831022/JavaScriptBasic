@@ -59,13 +59,13 @@ export default class Recipe {
       let ingredient = el.toLowerCase();
       unitsLong.forEach((unit, i) => {
         ingredient = ingredient.replace(unit, unitsShort[i]);
-      }); 
+      });
 
       //remove parentheses
       ingredient = ingredient.replace(/ *\([^)]*\) */g, " ");
 
       //parse ingredients into count , unit and ingredient
-      const arrIng = ingredient.split(' ');
+      const arrIng = ingredient.split(" ");
       const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
 
       let objIng;
@@ -91,14 +91,14 @@ export default class Recipe {
           count: parseInt(arrIng[0], 10),
           unit: "",
           ingredient: arrIng.slice(1).join(" ")
-        }
+        };
       } else if (unitIndex === -1) {
         // there is no unit and no num
         objIng = {
           count: 1,
           unit: "",
           ingredient
-        }
+        };
       }
 
       return objIng;
@@ -106,14 +106,14 @@ export default class Recipe {
     this.ingredients = newIngredients;
   }
 
-  updateServings(type){
-      //servings
-        const newServings = type === 'dec' ? this.servings -1 : this.servings +1;
-      //ingredients
-      this.ingredients.forEach(ing => {
-        ing.count *= (newServings / this.servings);
-      });
+  updateServings(type) {
+    //servings
+    const newServings = type === "dec" ? this.servings - 1 : this.servings + 1;
+    //ingredients
+    this.ingredients.forEach(ing => {
+      ing.count *= newServings / this.servings;
+    });
 
-      this.servings = newServings;
+    this.servings = newServings;
   }
 }
